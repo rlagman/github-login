@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Dashboard</div>
+                <div class="card-header">{{ __('Your Github Repositories') }}</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -14,7 +14,22 @@
                         </div>
                     @endif
 
-                    You are logged in!
+
+                    @if (isset($repositories))
+                        @foreach ($repositories as $name => $repos)
+                            <div class="owner">
+                                <h3>{{ $name }}</h3>
+                                <ul class="repos">
+                            @foreach ($repos as $repo)
+                                    <li class="repo">
+                                        {{ $repo->name }}    
+                                    </li>
+                            @endforeach
+                                </ul>
+                            </div>
+                        @endforeach
+                    @endif
+                    
                 </div>
             </div>
         </div>

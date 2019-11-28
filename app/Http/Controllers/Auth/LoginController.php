@@ -57,6 +57,32 @@ class LoginController extends Controller
     {
         $user = Socialite::driver('github')->user();
 
-        // $user->token;
+        // Register the user.
+        $this->createUser($user, 'github');
+        
+
+
+        // Redirect back to the homepage.
+        return redirect('/');
+    }
+
+    /**
+     * Attempt to create a user based on a Socialite user.
+     */
+    protected function createUser($account, $provider) {
+        $user = User::where('provider_id', $account->id)->first();
+
+        // Check that we found a user.
+        if (!$user) {
+            // Create one if we have not found one.
+            $user = User::create([
+                'name' => $account->name,
+                'email' => $account->email,
+                'provider' => $provider,
+                'provider_id' => $account->id,
+            ]);
+        }
+
+        return $user;
     }
 }
