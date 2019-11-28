@@ -14,3 +14,4 @@ yarn-error.log
 # wodby docker
 .idea/
 .docker-sync/
+docker-compose.override.yml
