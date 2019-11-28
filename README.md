@@ -1,78 +1,116 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
+# Docker-based PHP stack
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+[![Build Status](https://travis-ci.org/wodby/docker4php.svg?branch=master)](https://travis-ci.org/wodby/docker4php)
 
-## About Laravel
+## Introduction
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Docker4PHP is a set of docker images optimized for PHP. Use `docker-compose.yml` file from the [latest stable release](https://github.com/wodby/docker4php/releases) to spin up local environment on Linux, Mac OS X and Windows. 
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+* Read the docs on [**how to use**](https://wodby.com/docs/stacks/php/local#usage)
+* Join our community on [Spectrum](https://spectrum.chat/wodby/php) and ask questions in `#PHP` channel
+* Follow [@wodbycloud](https://twitter.com/wodbycloud) for updates announcements
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Stack
 
-## Learning Laravel
+The PHP stack consist of the following containers:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+| Container       | Versions                | Service name    | Image                              | Default |
+| -------------   | ------------------      | --------------- | ---------------------------------- | ------- |
+| [Nginx]         | 1.17, 1.16              | `nginx`         | [wodby/nginx]                      | ✓       |
+| [Apache]        | 2.4                     | `apache`        | [wodby/apache]                     |         |
+| [PHP]           | 7.3, 7.2, 7.1, 5.6      | `php`           | [wodby/php]                        |         |
+| [MariaDB]       | 10.4, 10.3, 10.2, 10.1  | `mariadb`       | [wodby/mariadb]                    | ✓       |
+| [PostgreSQL]    | 12, 11, 10, 9.x         | `postgres`      | [wodby/postgres]                   |         |
+| [Redis]         | 5, 4                    | `redis`         | [wodby/redis]                      |         |
+| [Memcached]     | 1                       | `memcached`     | [wodby/memcached]                  |         |
+| [Node.js]       | 12, 10, 8               | `node`          | [wodby/node]                       |         |
+| [Varnish]       | 6.0, 4.1                | `varnish`       | [wodby/varnish]                    |         |
+| [Solr]          | 8, 7, 6, 5              | `solr`          | [wodby/solr]                       |         |
+| [Elasticsearch] | 7, 6                    | `elasticsearch` | [wodby/elasticsearch]              |         |
+| [Kibana]        | 7, 6                    | `kibana`        | [wodby/kibana]                     |         |
+| [OpenSMTPD]     | 6.0                     | `opensmtpd`     | [wodby/opensmtpd]                  |         |
+| [Mailhog]       | latest                  | `mailhog`       | [mailhog/mailhog]                  | ✓       |
+| [AthenaPDF]     | 2.10.0                  | `athenapdf`     | [arachnysdocker/athenapdf-service] |         |
+| [Rsyslog]       | latest                  | `rsyslog`       | [wodby/rsyslog]                    |         |
+| [Blackfire]     | latest                  | `blackfire`     | [blackfire/blackfire]              |         |
+| [Webgrind]      | 1.5                     | `webgrind`      | [wodby/webgrind]                   |         |
+| [Xhprof viewer] | latest                  | `xhprof`        | [wodby/xhprof]                     |         |
+| Adminer         | 4.6                     | `adminer`       | [wodby/adminer]                    |         |
+| phpMyAdmin      | latest                  | `pma`           | [phpmyadmin/phpmyadmin]            |         |
+| Portainer       | latest                  | `portainer`     | [portainer/portainer]              | ✓       |
+| Traefik         | latest                  | `traefik`       | [_/traefik]                        | ✓       |
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+❗️PHP 5.6 [has reached end of life](http://php.net/supported-versions.php) and no longer supported by PHP team. PHP 7.1 is currently in security fix only mode. We strongly advise you to migrate to the latest stable PHP version.   
 
-## Laravel Sponsors
+## Documentation
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+Full documentation is available at https://wodby.com/docs/stacks/php/local
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
-- [Appoly](https://www.appoly.co.uk)
-- [OP.GG](https://op.gg)
+## Images' tags
 
-## Contributing
+Images tags format is `[VERSION]-[STABILITY_TAG]` where:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+`[VERSION]` is the _version of an application_ (without patch version) running in a container, e.g. `wodby/nginx:1.15-x.x.x` where Nginx version is `1.15` and `x.x.x` is a stability tag. For some images we include both major and minor version like PHP `7.2`, for others we include only major like Redis `5`. 
 
-## Code of Conduct
+`[STABILITY_TAG]` is the _version of an image_ that corresponds to a git tag of the image repository, e.g. `wodby/mariadb:10.2-3.3.8` has MariaDB `10.2` and stability tag [`3.3.8`](https://github.com/wodby/mariadb/releases/tag/3.3.8). New stability tags include patch updates for applications and image's fixes/improvements (new env vars, orchestration actions fixes, etc). Stability tag changes described in the corresponding a git tag description. Stability tags follow [semantic versioning](https://semver.org/).
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+We highly encourage to use images only with stability tags.
 
-## Security Vulnerabilities
+## Maintenance
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+We regularly update images used in this stack and release them together, see [releases page](https://github.com/wodby/docker4php/releases) for full changelog and update instructions. Most of routine updates for images and this project performed by [the bot](https://github.com/wodbot) via scripts located at [wodby/images](https://github.com/wodby/images).
+
+## Other Docker4x projects
+
+* [docker4drupal](https://github.com/wodby/docker4drupal)
+* [docker4wordpress](https://github.com/wodby/docker4wordpress)
+* [docker4ruby](https://github.com/wodby/docker4ruby)
+* [docker4python](https://github.com/wodby/docker4python)
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+This project is licensed under the MIT open source license.
+
+[Apache]: https://wodby.com/docs/stacks/php/containers#apache
+[AthenaPDF]: https://wodby.com/docs/stacks/php/containers#athenapdf
+[Blackfire]: https://wodby.com/docs/stacks/php/containers#blackfire
+[Elasticsearch]: https://wodby.com/docs/stacks/elasticsearch
+[Kibana]: https://wodby.com/docs/stacks/elasticsearch
+[Mailhog]: https://wodby.com/docs/stacks/php/containers#mailhog
+[MariaDB]: https://wodby.com/docs/stacks/php/containers#mariadb
+[Memcached]: https://wodby.com/docs/stacks/php/containers#memcached
+[Nginx]: https://wodby.com/docs/stacks/php/containers#nginx
+[Node.js]: https://wodby.com/docs/stacks/php/containers#nodejs
+[OpenSMTPD]: https://wodby.com/docs/stacks/php/containers#opensmtpd
+[PHP]: https://wodby.com/docs/stacks/php/containers#php
+[PostgreSQL]: https://wodby.com/docs/stacks/php/containers#postgresql
+[Redis]: https://wodby.com/docs/stacks/php/containers#redis
+[Rsyslog]: https://wodby.com/docs/stacks/php/containers#rsyslog
+[Solr]: https://wodby.com/docs/stacks/solr
+[Varnish]: https://wodby.com/docs/stacks/php/containers#varnish
+[Webgrind]: https://wodby.com/docs/stacks/php/containers#webgrind
+[XHProf viewer]: https://wodby.com/docs/stacks/php/containers#xhprof-viewer
+
+[_/traefik]: https://hub.docker.com/_/traefik
+[arachnysdocker/athenapdf-service]: https://hub.docker.com/r/arachnysdocker/athenapdf-service
+[blackfire/blackfire]: https://hub.docker.com/r/blackfire/blackfire
+[mailhog/mailhog]: https://hub.docker.com/r/mailhog/mailhog
+[phpmyadmin/phpmyadmin]: https://hub.docker.com/r/phpmyadmin/phpmyadmin
+[portainer/portainer]: https://hub.docker.com/portainer/portainer
+[wodby/adminer]: https://hub.docker.com/r/wodby/adminer
+[wodby/apache]: https://github.com/wodby/apache
+[wodby/elasticsearch]: https://github.com/wodby/elasticsearch
+[wodby/kibana]: https://github.com/wodby/kibana
+[wodby/mariadb]: https://github.com/wodby/mariadb
+[wodby/memcached]: https://github.com/wodby/memcached
+[wodby/nginx]: https://github.com/wodby/nginx
+[wodby/node]: https://github.com/wodby/node
+[wodby/opensmtpd]: https://github.com/wodby/opensmtpd
+[wodby/php]: https://github.com/wodby/php
+[wodby/postgres]: https://github.com/wodby/postgres
+[wodby/redis]: https://github.com/wodby/redis
+[wodby/rsyslog]: https://hub.docker.com/r/wodby/rsyslog
+[wodby/solr]: https://github.com/wodby/solr
+[wodby/varnish]: https://github.com/wodby/varnish
+[wodby/webgrind]: https://hub.docker.com/r/wodby/webgrind
+[wodby/xhprof]: https://hub.docker.com/r/wodby/xhprof
